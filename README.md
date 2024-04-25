@@ -25,7 +25,7 @@ The sentiment analysis model is trained using the preprocessed movie review data
 
 -Splitting the dataset into training and testing sets.  
 
--Training a machine learning model (e.g., Support Vector Machine, Naive Bayes) on the training data.  
+-Training a machine learning model (e.g., Decesion tree , Random forest) on the training data.  
 
 -Evaluating the model's performance on the testing data.
 
