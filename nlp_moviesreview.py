@@ -1,16 +1,21 @@
+
 print("Welcome to Sentiment Analysis of Movie Reviews")
 
 import re
 import unicodedata
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
+#nltk.download('omw-1.4')
 
+from matplotlib import pyplot as plt
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import numpy as np
+
+
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -49,7 +54,6 @@ def preprocessing(text):
 
     tokens = word_tokenize(text)
 
-    # Remove stopwords
     S_words = set(stopwords.words('english'))
     tokens = [w for w in tokens if w not in S_words]
 
@@ -59,20 +63,15 @@ def preprocessing(text):
 
     return processed_text
 
-
-#print(df.loc[0,"review"])
-
 df['review'] = df['review'].apply(preprocessing)
 
 print(df.head(5))
 
 
-tf_idf = TfidfVectorizer(max_features=1000)
+tf_idf = TfidfVectorizer(max_features=5000)
 tfidf_matrix = tf_idf.fit_transform(df['review'])
 tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=tf_idf.get_feature_names_out())
 df = pd.concat([df, tfidf_df], axis=1)
-
-print(df.head())
 print(df.columns)
 
 #apply label encoder
@@ -85,6 +84,49 @@ print(le.classes_)
 
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(df['review'], df['label'],test_size=0.15 ,random_state=42)
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier , GradientBoostingClassifier
+from sklearn.metrics import accuracy_score,confusion_matrix,plot_confusion_matrix,ConfusionMatrixDisplay ,classification_report
+
+
+
+X=df.drop(['review','label'], axis=1)
+Y=df['label']
+X_train, X_test, y_train, y_test = train_test_split(X, Y,test_size=0.15 ,random_state=42)
+
+
+model_decision_tree = DecisionTreeClassifier()
+model_RandomForest = RandomForestClassifier(n_estimators=500, random_state=42,max_depth=10)
+model_AdaBoost = AdaBoostClassifier()
+model_GradientBoost = GradientBoostingClassifier()
+
+model_decision_tree.fit(X_train, y_train)
+model_RandomForest.fit(X_train, y_train)
+model_AdaBoost.fit(X_train, y_train)
+model_GradientBoost.fit(X_train, y_train)
+
+
+
+y_pred_decision_tree = model_decision_tree.predict(X_test)
+y_pred_RandomForest = model_RandomForest.predict(X_test)
+y_pred_AdaBoost = model_AdaBoost.predict(X_test)
+y_pred_GradientBoost = model_GradientBoost.predict(X_test)
+
+
+print("decesion tree acc %s" , accuracy_score(y_test, y_pred_decision_tree))
+print("Random forest acc %s",accuracy_score(y_test, y_pred_RandomForest))
+print("AdaBoost acc %s",accuracy_score(y_test, y_pred_AdaBoost))
+print("GradientBoost acc %s",accuracy_score(y_test, y_pred_GradientBoost))
+
+
+print(confusion_matrix(y_test, y_pred_RandomForest))
+
+print("Classification report for model Random forest :")
+print(classification_report(y_test, y_pred_RandomForest))
+
+disp_rf = ConfusionMatrixDisplay(confusion_matrix(y_test, y_pred_RandomForest), display_labels=['Negative', 'Positive'])
+disp_rf.plot(cmap='Blues')
+plt.title('Confusion Matrix - Random Forest')
+plt.show()
 
 
