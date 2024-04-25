@@ -12,6 +12,8 @@ from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 import os
 import glob
 import pandas as pd
@@ -53,14 +55,36 @@ def preprocessing(text):
 
     lemma = WordNetLemmatizer()
     tokens = [lemma.lemmatize(w) for w in tokens]
+    processed_text = ' '.join(tokens)
 
-    return tokens
+    return processed_text
 
 
 #print(df.loc[0,"review"])
 
-for i, review in enumerate(df["review"]):
-    df.loc[i, "review"] = preprocessing(review)
+df['review'] = df['review'].apply(preprocessing)
+
+print(df.head(5))
 
 
-print(df.loc[0,"review"])
+tf_idf = TfidfVectorizer(max_features=1000)
+tfidf_matrix = tf_idf.fit_transform(df['review'])
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=tf_idf.get_feature_names_out())
+df = pd.concat([df, tfidf_df], axis=1)
+
+print(df.head())
+print(df.columns)
+
+#apply label encoder
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['label'] = le.fit_transform(df['label'])
+print(le.classes_)
+
+
+
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(df['review'], df['label'],test_size=0.15 ,random_state=42)
+
+
