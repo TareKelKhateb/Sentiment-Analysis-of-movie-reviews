@@ -8,6 +8,7 @@ import nltk
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 #nltk.download('omw-1.4')
+from nltk.corpus import wordnet
 
 from matplotlib import pyplot as plt
 from nltk.stem import WordNetLemmatizer, PorterStemmer
@@ -46,6 +47,8 @@ print(df["label"].value_counts())
 
 
 
+
+
 def preprocessing(text):
     # Deleting punctuation & special characters
     text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
@@ -63,9 +66,10 @@ def preprocessing(text):
 
     return processed_text
 
+
 df['review'] = df['review'].apply(preprocessing)
 
-print(df.head(5))
+print(df.shape)
 
 
 tf_idf = TfidfVectorizer(max_features=5000)
