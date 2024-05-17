@@ -123,6 +123,25 @@ print("AdaBoost acc %s",accuracy_score(y_test, y_pred_AdaBoost))
 print("GradientBoost acc %s",accuracy_score(y_test, y_pred_GradientBoost))
 
 
+accuracies = [accuracy_score(y_test, y_pred_decision_tree),
+              accuracy_score(y_test, y_pred_RandomForest),
+              accuracy_score(y_test, y_pred_AdaBoost),
+              accuracy_score(y_test, y_pred_GradientBoost)]
+
+# Define labels for the bars
+models = ['Decision Tree', 'Random Forest', 'AdaBoost', 'Gradient Boost']
+
+# Plotting the bar plot
+plt.figure(figsize=(10, 6))
+plt.bar(models, accuracies, color=['blue', 'green', 'orange', 'red'])
+plt.xlabel('Models')
+plt.ylabel('Accuracy')
+plt.title('Accuracy of Different Models')
+plt.ylim(0, 1)  # Set the y-axis limits to be between 0 and 1
+plt.show()
+
+
+
 print(confusion_matrix(y_test, y_pred_RandomForest))
 
 print("Classification report for model Random forest :")
@@ -134,3 +153,10 @@ plt.title('Confusion Matrix - Random Forest')
 plt.show()
 
 
+import joblib
+
+# Save the Random Forest model
+joblib_file = "random_forest_model.pkl"
+joblib.dump(model_RandomForest, joblib_file)
+
+print(f"Model saved to {joblib_file}")

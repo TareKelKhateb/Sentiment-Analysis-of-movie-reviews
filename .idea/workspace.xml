@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7515cc2a-26aa-4b59-beb5-b057dd14ac8a" name="Changes" comment="Testing GD_boosting , ada_boosting">
+    <list default="true" id="7515cc2a-26aa-4b59-beb5-b057dd14ac8a" name="Changes" comment="Testing GD_boosting , ada_boosting ,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nlp_moviesreview.py" beforeDir="false" afterPath="$PROJECT_DIR$/nlp_moviesreview.py" afterDir="false" />
     </list>
@@ -18,6 +18,17 @@
       <list>
         <option value="Python Script" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -52,11 +63,13 @@
     &quot;Python.nlp_moviesreview.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tarek/pattern assignment/3omara&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -78,7 +91,9 @@
       <updated>1713537688434</updated>
       <workItem from="1713537689515" duration="1847000" />
       <workItem from="1713872199796" duration="1251000" />
-      <workItem from="1714049884599" duration="1061000" />
+      <workItem from="1714049884599" duration="2002000" />
+      <workItem from="1714130962489" duration="40000" />
+      <workItem from="1715963252578" duration="428000" />
     </task>
     <task id="LOCAL-00001" summary="initialize project">
       <option name="closed" value="true" />
@@ -112,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714050091990</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Testing GD_boosting , ada_boosting ,">
+      <option name="closed" value="true" />
+      <created>1714051208531</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714051208531</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,9 +148,10 @@
     <MESSAGE value="applying tf-idf" />
     <MESSAGE value="applying Random forest" />
     <MESSAGE value="Testing GD_boosting , ada_boosting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing GD_boosting , ada_boosting" />
+    <MESSAGE value="Testing GD_boosting , ada_boosting ," />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing GD_boosting , ada_boosting ," />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SentimentAnalysis_of_movie_reviews$nlp_moviesreview.coverage" NAME="nlp_moviesreview Coverage Results" MODIFIED="1714050900515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SentimentAnalysis_of_movie_reviews$nlp_moviesreview.coverage" NAME="nlp_moviesreview Coverage Results" MODIFIED="1715963655530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
